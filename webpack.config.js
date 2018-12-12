@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const outputDirectory = "dist";
 
@@ -20,8 +21,23 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        test: /\.s?[ac]ss$/,
+        use: [
+            MiniCssExtractPlugin.loader,
+            { 
+              loader: 'css-loader',
+              options: {
+                url: false,
+                sourceMap: true
+              }
+            },
+            { 
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+        ],
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
@@ -41,6 +57,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       favicon: "./public/favicon.ico"
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: "[id].css"
+    }),
   ]
 };
