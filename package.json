@@ -5,9 +5,10 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon src/server/index.js --exec babel-node --presets es2015,stage-2",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "prod-client": "http-server ./dist",
+    "dev-client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "dev-server": "nodemon src/server/index.js --exec babel-node --presets es2015,stage-2",
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\""
   },
   "author": "Mark Kelsall",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^3.0.2",
+    "http-server": "^0.11.1",
     "prop-types": "^15.6.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
