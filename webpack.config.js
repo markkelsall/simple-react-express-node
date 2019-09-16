@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const outputDirectory = "dist";
 
@@ -61,6 +62,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./index.html"
     }),
+    new CompressionPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: "[id].css"
