@@ -5,7 +5,7 @@
   "main": "src/client/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "http-server ./index.html",
+    "start": "http-server",
     "dev-client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "dev-server": "nodemon --exec babel-node src/server/index.js",
     "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
